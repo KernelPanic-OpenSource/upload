@@ -15,7 +15,8 @@ jobs:
           command: |
             sudo apt install -y rsync sshpass wget
             wget https://github.com/KernelPanic-OpenSource/upload/raw/main/lk2nd-bacon-6.img
-            sshpass -p "$PASSWORD" rsync -avP -e ssh -o StrictHostKeyChecking=no lk2nd-bacon-6.img dopaemon@frs.sourceforge.net:/home/frs/project/halium-bacon/
+            # sshpass -p "$PASSWORD" rsync -avP -e ssh -o StrictHostKeyChecking=no lk2nd-bacon-6.img dopaemon@frs.sourceforge.net:/home/frs/project/halium-bacon/
+            rsync --rsh="sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no lk2nd-bacon-6.img dopaemon@frs.sourceforge.net:/home/frs/project/halium-bacon
 workflows:
   version: 2.1
   cooking:
