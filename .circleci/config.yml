@@ -8,16 +8,17 @@ jobs:
           name: Create Ssh
           no_output_timeout: 20m
           command: |
-            sudo mkdir -p ~/.ssh
-            sudo ssh-keyscan -t rsa frs.sourceforge.net >> ~/.ssh/known_hosts
-            sudo ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
+            mkdir -p ~/.ssh
+            ssh-keyscan -t rsa frs.sourceforge.net >> ~/.ssh/known_hosts
+            ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
       - run:
           name: Upload
           no_output_timeout: 20m
           command: |
             sudo apt install -y rsync sshpass wget
             wget https://github.com/KernelPanic-OpenSource/upload/raw/main/lk2nd-bacon-6.img
-            sudo sshpass -p "$PASSWORD" rsync -avP -e ssh -o StrictHostKeyChecking=no lk2nd-bacon-6.img dopaemon@frs.sourceforge.net:/home/frs/project/halium-bacon/
+            ls -la
+            sshpass -p "$PASSWORD" rsync -avP -e ssh -o StrictHostKeyChecking=no lk2nd-bacon-6.img dopaemon@frs.sourceforge.net:/home/frs/project/halium-bacon/
             # rsync --rsh="sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no lk2nd-bacon-6.img dopaemon@frs.sourceforge.net:/home/frs/project/halium-bacon
 workflows:
   version: 2.1
