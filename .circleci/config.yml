@@ -8,9 +8,9 @@ jobs:
           name: Create Ssh
           no_output_timeout: 20m
           command: |
-            mkdir -p ~/.ssh
-            ssh-keyscan -t rsa frs.sourceforge.net >> ~/.ssh/known_hosts
-            ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
+            sudo mkdir -p ~/.ssh
+            sudo ssh-keyscan -t rsa frs.sourceforge.net >> ~/.ssh/known_hosts
+            sudo ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
       - run:
           name: Upload
           no_output_timeout: 20m
