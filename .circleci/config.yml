@@ -8,7 +8,7 @@ jobs:
           name: Create Ssh
           no_output_timeout: 20m
           command: |
-            ssh-keygen -t rsa -b 4096 -C "polarisdp@gmail.com"
+            ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
       - run:
           name: Upload
           no_output_timeout: 20m
